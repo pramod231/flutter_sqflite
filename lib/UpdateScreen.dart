@@ -18,6 +18,8 @@ class _UpdateScreenState extends State<UpdateScreen> {
   TextEditingController categoryCon = TextEditingController();
   TextEditingController descriptionCon = TextEditingController();
 
+
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery. of(context). size. width ;
@@ -80,7 +82,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10)
               ),
-              child: Center(child: Text("Add Expenses",style: TextStyle(color: Colors.white,fontSize: 15),)),
+              child: Center(child: Text("Add Task",style: TextStyle(color: Colors.white,fontSize: 15),)),
             ),
           )
 

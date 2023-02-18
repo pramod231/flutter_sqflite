@@ -15,8 +15,8 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
 
-  TextEditingController amountCon = TextEditingController();
-  TextEditingController categoryCon = TextEditingController();
+  TextEditingController titleCon = TextEditingController();
+  TextEditingController statusCon = TextEditingController();
   TextEditingController descriptionCon = TextEditingController();
 
   @override
@@ -34,12 +34,12 @@ class _AddScreenState extends State<AddScreen> {
           Container(
             padding: EdgeInsets.only(top: 80,left: 15,right: 15,),
             child: TextField(
-              controller: categoryCon,
+              controller: statusCon,
               obscureText: false,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'Category',
-                hintText: 'Enter Category',
+                labelText: 'Title',
+                hintText: 'Enter Title',
               ),
             ),
           ),
@@ -50,15 +50,15 @@ class _AddScreenState extends State<AddScreen> {
               obscureText: false,
               decoration: InputDecoration(
                 border: OutlineInputBorder(),
-                labelText: 'description',
-                hintText: 'Enter description',
+                labelText: 'Status',
+                hintText: 'Enter Status',
               ),
             ),
           ),
           // Container(
           //   padding: EdgeInsets.symmetric(vertical: 15,horizontal: 15),
           //   child: TextField(
-          //     controller: amountCon,
+          //     controller: titleCon,
           //     obscureText: true,
           //     decoration: InputDecoration(
           //       border: OutlineInputBorder(),
@@ -82,7 +82,7 @@ class _AddScreenState extends State<AddScreen> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10)
               ),
-              child: Center(child: Text("Add Expenses",style: TextStyle(color: Colors.white,fontSize: 15),)),
+              child: Center(child: Text("Add Task",style: TextStyle(color: Colors.white,fontSize: 15),)),
             ),
           )
 
@@ -92,11 +92,8 @@ class _AddScreenState extends State<AddScreen> {
   }
 
   Future<void> addItems() async {
-    await  SqlHelper.createItem(categoryCon.text, descriptionCon.text);
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                MyHomePage()));
+    await  SqlHelper.createItem(statusCon.text, descriptionCon.text);
+    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+        builder: (context) => MyHomePage()), (Route route) => false);
   }
 }
